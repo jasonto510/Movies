@@ -1,4 +1,6 @@
 import React from 'react';
+import Movies from './Movies.jsx'
+
 
 class TrendingMovies extends React.Component {
   constructor(props) {
@@ -9,10 +11,16 @@ class TrendingMovies extends React.Component {
     })
 
     this.getMovies.bind(this);
+    this.clickedMovies.bind(this);
   }
 
   componentDidMount() {
     this.getMovies();
+  }
+
+  clickedMovies (event) {
+    event.preventDefault();
+    console.log(event.target);
   }
 
   getMovies () {
@@ -30,9 +38,7 @@ class TrendingMovies extends React.Component {
         {this.state.foundMovies ? 
           <div>
             {this.state.movies.map(trending => {
-              return <li> 
-                {trending.original_title}
-              </li>
+              return <Movies movies={trending}/>
             })}
           </div> 
           : null
