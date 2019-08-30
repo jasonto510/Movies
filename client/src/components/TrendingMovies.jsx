@@ -15,16 +15,15 @@ class TrendingMovies extends React.Component {
   }
 
   componentDidMount() {
+    console.log('hi')
     this.getMovies();
   }
 
   clickedMovies (event) {
     event.preventDefault();
-    console.log(event.target);
   }
 
   getMovies () {
-    console.log(this.props.trending)
     this.setState({
       foundMovies : true,
       movies : this.props.trending
