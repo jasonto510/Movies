@@ -89,8 +89,9 @@ class HomePage extends React.Component {
         </form>
           {this.state.search ?  
             <div>
+              {console.log('something happened here')}
             {this.state.searchedMovies.map(movies => {
-              <SearchedMovies movies = {movies}/>
+              return <SearchedMovies movies = {movies}/>
             })}
             </div> : null
           }
