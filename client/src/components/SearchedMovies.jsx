@@ -4,25 +4,39 @@ class SearchedMovies extends React.Component {
   constructor(props) {
     super(props)
     this.state = ({
-      movies : []
+      movies : [],
+      description : false
     })
+    this.showDescription = this.showDescription.bind(this);
   }
 
-  componentDidMount() {
-    console.log('something')
-    this.setState({
-      movies : this.props.movies
-    })
-  }
 
   componentDidUpdate(prevProps, prevState, snapShot) {
-    console.log(this.props.movies, prevProps.movies);
+    if (prevState.movies.length === 0) {
+      this.setState({
+        movies : this.props.movies
+      })
+    }
+  }
+
+  showDescription(event) {
+    event.preventDefault();
+    this.setState({
+      description : true
+    })
   }
 
   render() {
     return (
       <div>
-        {this.state.movies.original_name}
+        <div id="moviesTitles" onClick={this.showDescription} style={{fontSize : '18px'}}> 
+          {this.state.movies.original_title}
+        </div>
+        {this.state.description ? 
+          <div>
+            {this.state.movies.overview}
+          </div> : null
+        }
       </div>
     )
   }
